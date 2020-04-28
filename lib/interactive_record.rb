@@ -32,6 +32,7 @@ class InteractiveRecord
     @id = DB[:conn].execute("SELECT last_insert_rowid() FROM #{table_name_for_insert}")[0][0]
   end
 
+  # why waste typing on this method?
   def table_name_for_insert
     self.class.table_name
   end
@@ -39,6 +40,7 @@ class InteractiveRecord
   def values_for_insert
     values = []
     self.class.column_names.each do |col_name|
+      # what does this line do?
       values << "'#{send(col_name)}'" unless send(col_name).nil?
     end
     values.join(", ")
